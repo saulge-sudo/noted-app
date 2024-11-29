@@ -1,4 +1,3 @@
-import pytesseract as pyts
 import cv2 as cv
 import time, os
 from PIL import Image
