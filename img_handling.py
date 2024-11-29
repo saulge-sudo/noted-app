@@ -3,17 +3,20 @@ import cv2 as cv
 import time, os
 from PIL import Image
 
-cap = cv.VideoCapture(0)
-ret, frame = cap.read()
-time.sleep(2) #wait for 2 seconds to adjust the camera
+def import_image():
+    cap = cv.VideoCapture(0)
+    ret, frame = cap.read()
+    time.sleep(2) #wait for 2 seconds to adjust the camera
+        
+    cv.imwrite(r'images\unchanged.jpg',frame)
+    cv.destroyAllWindows()
+    cap.release()
 
-while(True):
-    cv.imshow('img1',frame) #display the captured image
-    if cv.waitKey(1) & 0xFF == ord('y'): #save on pressing 'y' 
-        cv.imwrite(r'images\c1.png',frame)
-        cv.destroyAllWindows()
-        break
+import_image()
 
-print(pyts.image_to_string(r'images\c1.png'))
+pyts.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-cap.release()
+img = Image.open(r"images\unchanged.jpg")
+text = pyts.image_to_string(img)
+
+print(text)
