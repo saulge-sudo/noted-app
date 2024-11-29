@@ -1,8 +1,11 @@
 import google.generativeai as genai
 import img_handling as imgh
 import os
+import base64
 
-genai.configure(api_key=os.environ("GEMINI_API_KEY"))
+image = r"images/unchanged_sharp.jpg"
+
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-1.5-flash")
-response = model.generate_content("Explain how AI works")
-print(response.text)
+summarize_response = model.generate_content([{'mime_type':'image/jpg', 'data': base64.b64encode(image.content).decode('utf-8')}, "Summarize these notes: "])
+print(summarize_response.text)

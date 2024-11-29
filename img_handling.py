@@ -17,11 +17,4 @@ def import_image():
 
 import_image()
 
-pyts.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
-
 img = Image.open(r"images/unchanged.jpg")
-
-img.save('images/unchanged_sharp.jpg', quality=95)
-text = pyts.image_to_string(img)
-
-print(text)
