@@ -1,19 +1,19 @@
-import pytesseract as pyts
 import cv2 as cv
 import time, os
 from PIL import Image
 
-cap = cv.VideoCapture(0)
-ret, frame = cap.read()
-time.sleep(2) #wait for 2 seconds to adjust the camera
+def import_image():
+    for i in range(4):
+        print(4-i)
+        time.sleep(1) #wait for 4 seconds to adjust the camera
+        
+    cap = cv.VideoCapture(0)
+    ret, frame = cap.read()
 
-while(True):
-    cv.imshow('img1',frame) #display the captured image
-    if cv.waitKey(1) & 0xFF == ord('y'): #save on pressing 'y' 
-        cv.imwrite(r'images\c1.png',frame)
-        cv.destroyAllWindows()
-        break
+    cv.imwrite(r'images/unchanged.jpg',frame)
+    cv.destroyAllWindows()
+    cap.release()
 
-print(pyts.image_to_string(r'images\c1.png'))
+import_image()
 
-cap.release()
+img = Image.open(r"images/unchanged.jpg")
